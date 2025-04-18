@@ -1,0 +1,48 @@
+{
+  "name": "interbanking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "build": "tsc",
+    "test": "npx jest",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matu2929/interbanking.git"
+  },
+  "author": "Matias A. Masco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matu2929/interbanking/issues"
+  },
+  "homepage": "https://github.com/matu2929/interbanking#readme",
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "class-transformer": "^0.5.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.14.1",
+    "@types/supertest": "^6.0.3",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.6.0",
+    "supertest": "^7.1.0",
+    "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
