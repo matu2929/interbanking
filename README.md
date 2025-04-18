@@ -95,3 +95,38 @@ Esto permite probar fácilmente los endpoints desde el inicio.
 | npx prisma migrate reset            | Reinicia DB, aplica migraciones y ejecuta seed   |
 | npx prisma db seed                  | Ejecuta el seed manualmente                      |
 | npm run test                        | Corre los tests unitarios                        |
+
+---
+
+## 🧾 Endpoints y ejemplos con `curl`
+
+#### 1. 📥 Crear una empresa (adhesión)
+
+**POST** `/company`
+
+```bash
+curl -X POST http://localhost:3000/api/company   -H "Content-Type: application/json"   -d '{
+    "cuit": "12345678901",
+    "businessName": "Empresa Nueva"
+  }'
+```
+
+---
+
+#### 2. 🏢 Empresas que se adhirieron el último mes
+
+**GET** `/company/joined-last-month`
+
+```bash
+curl http://localhost:3000/api/company/joined-last-month
+```
+
+---
+
+#### 3. 🔄 Empresas que hicieron transferencias el último mes
+
+**GET** `/company/with-transactions-last-month`
+
+```bash
+curl http://localhost:3000/api/company/with-transactions-last-month
+```
