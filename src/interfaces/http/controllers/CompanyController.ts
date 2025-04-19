@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CompanyUseCase } from "../../../application/use-cases/CompanyUseCase";
 import { CompanyDTO } from "../dtos/CompanyDto";
 import { toDTO } from "../helpres/dto";
+import { AppError } from "../../../application/errors/AppError";
 
 export class CompanyController {
   constructor(private companyUseCase: CompanyUseCase) {}
@@ -11,7 +12,7 @@ export class CompanyController {
     const company = await this.companyUseCase.getById(id);
     
     if (!company) {
-      return res.status(404).json({ message: "Empresa no encontrada" });
+      throw new AppError("Empresa no encontrada", 404);
     }
     
     const companyDTO = toDTO(CompanyDTO, company);
@@ -32,6 +33,9 @@ export class CompanyController {
 
   async createCompany(req: Request, res: Response) {
     const { cuit, businessName } = req.body;
+    if (!cuit || !businessName) {
+      throw new AppError("CUIT y Razón Social son requeridos", 400);
+    }
     const newCompany = await this.companyUseCase.createCompany(cuit, businessName);
     const companyDTO = toDTO(CompanyDTO, newCompany);
     return res.status(201).json(companyDTO);
